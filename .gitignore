@@ -1,0 +1,9 @@
+target/
+pom.xml.tag
+.idea
+**/mvnw
+**/mvnw.cmd
+**/.mvn
+**/target/
+**/.gitignore
+**/src/test
