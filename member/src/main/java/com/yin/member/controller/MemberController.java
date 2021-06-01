@@ -3,6 +3,7 @@ package com.yin.member.controller;
 import com.yin.common.utils.PageUtils;
 import com.yin.common.utils.R;
 import com.yin.member.entity.MemberEntity;
+import com.yin.member.feign.CouponFeignClient;
 import com.yin.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,19 +25,19 @@ import java.util.Map;
 public class MemberController {
     @Autowired
     private MemberService memberService;
-//    @Autowired
-//    private CouponFeignClient couponFeignClient;
+    @Autowired
+    private CouponFeignClient couponFeignClient;
 /**
  * feign远程调用测试接口
  */
-//        @RequestMapping("/coupon")
-//        public R test(){
-//            MemberEntity memberEntity = new MemberEntity();
-//            memberEntity.setNickname("张三");
-//            R menbercoupon = couponFeignClient.MemberCoupon();
-//
-//            return R.ok().put("member",memberEntity).put("coupon",menbercoupon.get("coupon"));
-//        }
+        @RequestMapping("/coupon")
+        public R test(){
+            MemberEntity memberEntity = new MemberEntity();
+            memberEntity.setNickname("张三");
+            R menbercoupon = couponFeignClient.MemberCoupon();
+
+            return R.ok().put("member",memberEntity).put("coupon",menbercoupon.get("coupons"));
+        }
     /**
      * 列表
      */
