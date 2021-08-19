@@ -5,6 +5,8 @@ import com.yin.common.utils.R;
 import com.yin.coupon.entity.CouponEntity;
 import com.yin.coupon.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -19,12 +21,25 @@ import java.util.Map;
  * @email 1769498362@qq.com
  * @date 2021-05-27 14:45:58
  */
+
+/**
+ * nacos 配置 注解@RefreshScope Pom文件中引入依赖
+ * 创建bootstrap.properties
+ * 配置中心添加数据集
+ * 可以基于环境和微服务系统进行配置隔离
+ * 利用命名空间作环境隔离
+ * 可以给每个微服务创建各自的命名空间
+ */
+@RefreshScope
 @RestController
 @RequestMapping("coupon/coupon")
 public class CouponController {
     @Autowired
     private CouponService couponService;
-
+    @Value("${coupon.user.name}")
+    private String name;
+    @Value("${coupon.user.age}")
+    private Integer age;
     /**
      *测试接口
      */
@@ -35,6 +50,15 @@ public class CouponController {
         //asList() 该方法是将数组转化成List集合的方法。 此方法生成的list长度不可变
         return R.ok().put("coupons",Arrays.asList(couponEntity));
     }
+    /**
+     * nacos-config 测试
+     */
+    @RequestMapping("test")
+    public R test(){
+        return R.ok().put("name",name).put("age",age);
+    }
+
+
     /**
      * 列表
      */

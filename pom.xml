@@ -16,5 +16,6 @@
         <module>ware</module>
         <module>common</module>
         <module>renren-fast</module>
+        <module>gateway</module>
     </modules>
 </project>

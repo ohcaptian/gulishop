@@ -1,16 +1,28 @@
 #sql相关配置
 spring:
-  datasource:
-    username: root
-    password: root
-    url: jdbc:mysql://121.196.150.110:3306/gulimall_pms?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
+#  datasource:
+#    username: root
+#    password: root
+#    url: jdbc:mysql://121.196.150.110:3306/gulimall_pms?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: product
 #mybatis-plus相关配置
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
     db-config:
       id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 
 server:
-  port: 10000
+  port: 10021
+
+logging:
+  level:
+   com.yin.product.dao: debug
